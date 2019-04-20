@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int a[5]={3,6,8,2,0};
+
+//select sort選擇排序法 
+void ssort(int n){
+	if(n==0){
+		return;
+	}
+	int k=n-1;
+	for(int i=0;i<n;i++){		//尋找出在n-1~1範圍裡比n大的maximum
+		if(a[i]>a[k]){
+			k=i;
+		}
+	swap(a[k],a[n-1]);
+	}
+	ssort(n-1);
+}
+
+int main(){
+	ssort(5);
+	for(int i=0;i<5;i++){
+		cout << a[i] << " ";
+	}cout << "\n";
+}
