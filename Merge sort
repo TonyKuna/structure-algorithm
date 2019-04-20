@@ -1,0 +1,41 @@
+#include<iostream>
+using namespace std;
+int x[5]={3,6,8,2,0};
+int y[5];
+int n=1;
+//merge sort合併排序法
+//合併[a1,a2,....an][b1,b2,....bn] 
+void merge(int a,int bn){
+	for(int a1=a,an=(a1+bn)/2,b=an+1,i=a;a1<=an||b<=bn;i++){//用a1避免a資料改變 
+		if(b>bn||(a1<=an&&x[a1]<=x[b])){
+			y[i]=x[a1];
+			a1++;
+		}else{
+			y[i]=x[b];
+			b++;
+		}
+	}
+	cout << "Step." << n <<": ";
+	for(int i=a;i<=bn;i++){
+		cout << y[i] << ", ";
+		x[i]=y[i];
+	}cout << "\n";
+	n++;
+}
+
+void msort(int a,int bn){
+	if(a==bn){
+		return;
+	}
+	msort(a,(a+bn)/2);
+	msort((a+bn)/2+1,bn);
+	merge(a,bn);
+}
+
+int main(){
+	msort(0,4);
+	cout << "Ans: ";
+	for(int i=0;i<5;i++){
+		cout << y[i] << ", ";
+	}cout << "\n";
+}
