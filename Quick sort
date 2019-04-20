@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+int x[5]={3,6,8,2,0};
+
+//quick sort快速排序法
+//https://www.youtube.com/watch?v=MZaf_9IZCrc 
+void qsort(int a,int b){
+	if(a>b){
+		return;
+	}
+	int i=a-1,j=a;
+	for(;j<b;j++){
+		if(x[j]>x[b]){
+			continue;
+		}else{
+			i++;
+			swap(x[i],x[j]);
+		}
+	}
+	swap(x[i+1],x[b]);
+	qsort(a,i);
+	qsort(i+2,b);
+}
+
+int main(){
+	qsort(0,4);
+	cout << "Ans: ";
+	for(int i=0;i<5;i++){
+		cout << x[i] << ", ";
+	}cout << "\n";
+}
